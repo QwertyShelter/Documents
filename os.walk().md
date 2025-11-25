@@ -46,9 +46,10 @@ files = ["results.mat"]          # processed目录下的文件
 ```
 
 3. 注意事项
+
 os.walk() does not guarantee sorted order of directories or files. Order depends on underlying file system.
 
-两次返回的文件顺序可能不一致，保险期间是用
+两次返回的文件顺序可能不一致，保险起见是用
 ```python
 for root, dirs, filenames in os.walk(filepath):
     for filename in sorted(filenames):   # 必须排序
