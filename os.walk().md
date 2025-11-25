@@ -45,8 +45,9 @@ dirs = []                        # processed没有子目录
 files = ["results.mat"]          # processed目录下的文件
 ```
 
-os.walk() does not guarantee sorted order of directories or files.
-Order depends on underlying file system.
+3. 注意事项
+os.walk() does not guarantee sorted order of directories or files. Order depends on underlying file system.
+
 两次返回的文件顺序可能不一致，保险期间是用
 ```python
 for root, dirs, filenames in os.walk(filepath):
