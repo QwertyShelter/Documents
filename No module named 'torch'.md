@@ -8,4 +8,4 @@
 
 # 2025/11/14 日补充
 
-在安装 selective_scan 库的时候又出现了相同的问题，这次的解决方法是直接运行 `python setup.py` 绕过依赖检查
+在安装 selective_scan 库的时候又出现了相同的问题，这次的解决方法是直接运行 `python setup.py build` 绕过依赖检查
