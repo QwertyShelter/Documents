@@ -1,4 +1,4 @@
-### 更改为从本地加载模型
+# 更改为从本地加载模型
 
 ```python
 model = AnySplat.from_pretrained("checkpoints", local_files_only=True)
