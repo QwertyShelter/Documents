@@ -6,3 +6,9 @@ arr[idx][None]
 ```py
 arr[idx:idx+1]
 ```
+`[None]` 就能够起到一个添加维度的作用，None 所在的位置就是添加维度的位置，例如
+```py
+arr[..., None]  ->  在 arr 末尾添加一个维度
+arr.shape = [A, B, C, D]
+arr[:, :, None, ...].shape = [A, B, 1, C, D]
+```
