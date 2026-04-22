@@ -62,3 +62,12 @@ def lr_lambda(step: int) -> float:
 
 scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=lr_lambda)
 ```
+
+
+### CosineAnnealingLR 递推更新模式
+
+`CosineAnnealingLR` 在 PyTorch 中的实现并不是纯粹的 closed-form 计算，而是采用了基于当前 `learning_rate` 的递推更新机制。因此在从 checkpoint 恢复训练后，即使修改 `T_max`，`learning_rate` 通常会从当前值平滑延续，而不会出现明显跳变。
+
+相比之下，基于 `LambdaLR` 的手动实现通常是显式函数形式（lr = f(epoch)），恢复训练时会根据新的调度函数重新计算当前 epoch 对应的 `learning_rate`，因此当 `T_max` 改变时会导致学习率不连续。
+
+需要注意的是，`CosineAnnealingLR` 的这种“连续性”来源于其状态依赖更新，而不是严格遵循新的 cosine 曲线，因此在理论上其学习率轨迹已经偏离了修改后的目标调度函数。
