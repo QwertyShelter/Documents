@@ -12,7 +12,7 @@ disable_response_storage = true
 
 [model_providers.sub2api]
 name = "sub2api"
-base_url = "http://101.37.159.5:8080/v1"
+base_url = "http://101.37.159.5:8080"
 wire_api = "responses"
 requires_openai_auth = true
 ```
@@ -21,6 +21,14 @@ requires_openai_auth = true
 
 之后遇到问题：远程对话完全无响应，报错 `502 Upstream request failed`，但是在本地能够正常使用。
 
-原因是远程的 API 路径和本地的可能不同，解决方法：在 base_url 中强补 `/v1`
+原因是远程的 API 路径和本地的可能不同，解决方法：在 base_url 中强补 `/v1`，即
+
+```toml
+[model_providers.sub2api]
+name = "sub2api"
+base_url = "http://101.37.159.5:8080/v1"
+wire_api = "responses"
+requires_openai_auth = true
+```
 
 以及，最终是关闭了远程的代理使用 Codex，原因是中转网址自动配置了代理
